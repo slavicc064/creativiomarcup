@@ -28,6 +28,8 @@ class ThemeSupport
 
         wp_enqueue_style( 'bootstrap-css', get_template_directory_uri() . '/bootstrap/css/bootstrap.min.css' );
 
+        wp_enqueue_style( 'roboto', "//fonts.googleapis.com/css?family=Roboto" );
+
         wp_enqueue_style( 'style-name', get_stylesheet_uri() );
 
         wp_deregister_script('jquery');

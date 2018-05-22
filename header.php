@@ -26,5 +26,6 @@
                 'walker'            => new WP_Bootstrap_Navwalker(),
             ) );
             ?>
+            <?php echo do_shortcode('[wpdreams_ajaxsearchlite]'); ?>
         </div>
     </nav>

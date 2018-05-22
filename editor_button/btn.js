@@ -54,13 +54,20 @@
 (function() {
     tinymce.PluginManager.add('ex_my_button', function( editor, url ) {
         editor.addButton( 'ex_my_button', {
-            text: "",
+            text: "Button",
+            type: 'menubutton',
             title: 'add button',
-            icon: "icon dashicons-editor-code",
-            onclick: function() {
-                editor.insertContent('[row] content [/row]'
-                );
-            }
+            menu: [
+                {
+                    text: 'container', value:
+                    '[container] ' +
+                    'your content ' +
+                    '[/container]',
+                    onclick: function() {
+                        editor.insertContent(this.value());
+                    }
+                },
+            ]
         });
     });
 })();

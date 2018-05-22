@@ -54,20 +54,21 @@
 (function() {
     tinymce.PluginManager.add('ex_my_button', function( editor, url ) {
         editor.addButton( 'ex_my_button', {
-            text: "Button",
-            type: 'menubutton',
             title: 'add button',
-            menu: [
-                {
-                    text: 'container', value:
-                    '[container] ' +
-                    'your content ' +
-                    '[/container]',
-                    onclick: function() {
-                        editor.insertContent(this.value());
+            text: "Button",
+            onclick: function() {
+                editor.windowManager.open( {
+                    title: 'Text for the button',
+                    body: [{
+                        type: 'textbox',
+                        name: 'title',
+                        label: 'Text for the button'
+                    }],
+                    onsubmit: function( e ) {
+                        editor.insertContent(  e.data.title );
                     }
-                },
-            ]
+                });
+            }
         });
     });
 })();

@@ -12,3 +12,9 @@
     .ex-icon {
         background-image: url(../image/insert_table.png)!important;
     }
+
+    div[aria-label="add button"] {
+        padding: 2px;
+        border: 1px solid #ddd!important;
+        background-color: #fff!important;
+    }

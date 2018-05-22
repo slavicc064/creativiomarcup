@@ -65,7 +65,7 @@
                         label: 'Text for the button'
                     }],
                     onsubmit: function( e ) {
-                        editor.insertContent(  e.data.title );
+                        editor.insertContent( "<div class='button'>" + e.data.title + "</div>");
                     }
                 });
             }

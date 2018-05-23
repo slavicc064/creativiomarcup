@@ -1,6 +1,6 @@
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
     <?php
-    the_title();
+    the_title("<h1 class='example'>", "</h1>");
     //the_content();
     //the_permalink();
     the_excerpt();

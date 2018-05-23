@@ -52,22 +52,45 @@ class Editor
     //Shortcode
     public function add_container( $atts, $content )
     {
-        if (!empty($atts['row']))
+        if ( !empty( $atts['row'] ) )
         {
-            echo "<div class='container'><div class='row'>";
+            if ( $atts['width'] == "full-width" )
+            {
+                echo "<div class='container-fluid'><div class='row'>";
 
-            echo do_shortcode( $content );
+                echo do_shortcode( $content );
 
-            echo "</div></div>";
+                echo "</div></div>";
+            }
+            else
+            {
+                echo "<div class='container'><div class='row'>";
+
+                echo do_shortcode( $content );
+
+                echo "</div></div>";
+            }
+
         }
 
         else
         {
-            echo "<div class='container'>";
+            if ( $atts['width'] == "full-width" )
+            {
+                echo "<div class='container-fluid'>";
 
-            echo do_shortcode( $content );
+                echo do_shortcode( $content );
 
-            echo "</div>";
+                echo "</div>";
+            }
+            else
+            {
+                echo "<div class='container'>";
+
+                echo do_shortcode( $content );
+
+                echo "</div>";
+            }
         }
 
     }

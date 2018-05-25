@@ -202,7 +202,8 @@
                                 {text: 'Info', value: '[button btn="info"]'},
                                 {text: 'Light', value: '[button btn="light"]'},
                                 {text: 'Dark', value: '[button btn="dark"]'},
-                                {text: 'Link', value: '[button btn="link"]'}
+                                {text: 'Link', value: '[button btn="link"]'},
+                                {text: 'Creativio', value: '[button btn="button"]'}
                             ]
                         }],
                     onsubmit: function( e ) {

@@ -120,7 +120,7 @@ p{
 
 }
 
-.button{
+.btn-button {
     display: inline-block;
     background-color: #8caf2f;
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.15) 0%, rgba(255, 255, 255, 0.15) 100%);

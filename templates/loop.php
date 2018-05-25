@@ -6,6 +6,12 @@
 
         <p class='blog-post-meta'><?php the_time(); ?></p>
 
+        <p class='blog-post-meta'><?php the_date(); ?></p>
+
+        <p class='blog-post-meta'><?php the_tags(); ?></p>
+
+        <p class='blog-post-meta'><?php the_comment(); ?></p>
+
         <?php the_post_thumbnail("<img class='featurette-image img-fluid mx-auto'>");?>
 
         <p class='excerpt'><?php the_excerpt();?></p>

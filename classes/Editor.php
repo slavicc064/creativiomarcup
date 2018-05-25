@@ -6,8 +6,12 @@ class Editor
     {
         add_action( 'admin_enqueue_scripts', array( $this, 'ex_first_css' ) );
         add_action( 'admin_head', array( $this, 'ex_add_my_first_button' ) );
-        add_shortcode( 'container', array( $this, 'add_container' ) );
+        add_shortcode( 'row', array( $this, 'add_row' ) );
+        add_shortcode( 'row_full_width', array( $this, 'add_row_full_width' ) );
         add_shortcode( 'col', array( $this, 'add_column' ) );
+        add_shortcode( 'button', array( $this, 'add_button' ) );
+        add_shortcode( 'text', array( $this, 'add_text' ) );
+        add_action( 'current_screen', array( $this, 'my_theme_add_editor_styles' ) );
     }
 
     //Button
@@ -32,14 +36,47 @@ class Editor
 
     public function ex_add_tinymce_plugin($plugin_array)
     {
-        $plugin_array['ex_first_button'] = get_template_directory_uri()."/editor_button/btn.js";
-        $plugin_array['ex_my_button'] = get_template_directory_uri()."/editor_button/btn.js";
+        $btnjs = get_template_directory_uri()."/editor_button/btn.js";
+        $plugin_array = [
+            'row_button' => $btnjs,
+            'row_full_width_button' => $btnjs,
+            'ex_col-2_button' => $btnjs,
+            'ex_col-3_button' => $btnjs,
+            'ex_col-4_button' => $btnjs,
+            'ex_col-2-3_1-3_button' => $btnjs,
+            'ex_col-1-4_3-4_button' => $btnjs,
+            'ex_col-1-4_1-2_1-4_button' => $btnjs,
+            'ex_col-5-6_1-6_button' => $btnjs,
+            'ex_col-6_button' => $btnjs,
+            'ex_col-1-6_4-6_1-6_button' => $btnjs,
+            'ex_col-1-6_1-6_1-6_1-2_button' => $btnjs,
+            'text_button' => $btnjs,
+            "add_button" => $btnjs
+        ];
         return $plugin_array;
     }
 
     public function ex_register_my_first_button($buttons)
     {
-        array_push($buttons, "ex_first_button", "ex_my_button");
+        array_push(
+
+            $buttons,
+            'row_button',
+            'row_full_width_button',
+            "ex_col-2_button" ,
+            "ex_col-3_button",
+            "ex_col-4_button",
+            "ex_col-2-3_1-3_button",
+            "ex_col-1-4_3-4_button",
+            "ex_col-1-4_1-2_1-4_button",
+            "ex_col-5-6_1-6_button",
+            "ex_col-6_button",
+            "ex_col-1-6_4-6_1-6_button",
+            "ex_col-1-6_1-6_1-6_1-2_button",
+            "text_button",
+            "add_button"
+
+        );
         return $buttons;
     }
 
@@ -49,90 +86,60 @@ class Editor
         wp_enqueue_style( 'fontawesome', get_template_directory_uri() . '/fontawesome/web-fonts-with-css/css/fontawesome-all.css');
     }
 
+    public function my_theme_add_editor_styles() {
+        add_editor_style( get_template_directory_uri() . '/fontawesome/web-fonts-with-css/css/fontawesome-all.css' );
+    }
+
     //Shortcode
-    public function add_container( $atts, $content )
+    public function add_row($atts, $content)
     {
-        if ( !empty( $atts['row'] ) )
-        {
-            if ( $atts['width'] == "full-width" )
-            {
-                echo "<div class='container-fluid'><div class='row'>";
+        echo "<div class='container'><div class='row'>";
 
-                echo do_shortcode( $content );
+        echo do_shortcode( $content );
 
-                echo "</div></div>";
-            }
-            else
-            {
-                echo "<div class='container'><div class='row'>";
+        echo "</div></div>";
+    }
+    public function add_row_full_width($atts, $content)
+    {
+        echo "<div class='container-fluid'><div class='row'>";
 
-                echo do_shortcode( $content );
+        echo do_shortcode( $content );
 
-                echo "</div></div>";
-            }
-
-        }
-
-        else
-        {
-            if ( $atts['width'] == "full-width" )
-            {
-                echo "<div class='container-fluid'>";
-
-                echo do_shortcode( $content );
-
-                echo "</div>";
-            }
-            else
-            {
-                echo "<div class='container'>";
-
-                echo do_shortcode( $content );
-
-                echo "</div>";
-            }
-        }
-
+        echo "</div></div>";
     }
 
     public function add_column( $atts, $content )
     {
-        if (!empty($atts['class']))
+        if ( !empty( $atts['class'] ) )
         {
-            switch ($atts['class']) {
-                case 2:
-                    echo "<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'>";
+            echo "<div class='col-lg-{$atts['class']} col-md-{$atts['class']} col-sm-6 col-xs-12'><div class='lg-{$atts['class']} mb-{$atts['class']} sm-6 xs-12 box-shadow'>";
 
-                    echo do_shortcode( $content );
+            echo do_shortcode( $content );
 
-                    echo "</div>";
-                    break;
-                case 3:
-                    echo "<div class='col-lg-4 col-md-4 col-sm-6 col-xs-12'>";
-
-                    echo do_shortcode( $content );
-
-                    echo "</div>";
-                    break;
-                case 4:
-                    echo "<div class='col-lg-3 col-md-3 col-sm-6 col-xs-12'>";
-
-                    echo do_shortcode( $content );
-
-                    echo "</div>";
-                    break;
-            }
+            echo "</div></div>";
         }
 
         else
         {
-            echo "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>";
+            echo "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'><div class='lg-12 mb-12 sm-12 xs-12 box-shadow'>";
 
             echo do_shortcode( $content );
 
-            echo "</div>";
+            echo "</div></div>";
         }
 
+    }
+
+    public function add_button( $atts, $content )
+    {
+        echo '<div class="btn-group"><button type="button" class="btn btn-' . $atts['btn'] . '">' . $content . '</button></div>';
+    }
+
+    public function add_text( $atts, $content )
+    {
+        echo '<p class="card-text">';
+        echo do_shortcode($content);
+        echo '</p>';
     }
 }
 new Editor;

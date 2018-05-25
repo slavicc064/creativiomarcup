@@ -9,16 +9,65 @@ i.mce-i-icon {
     padding-right: 2px
 }
 
-.ex-icon {
-    background-image: url(../image/insert_table.png)!important;
+.icon-row {
+    background-image: url("icon/row.png")!important;
 }
 
-div[aria-label="add html element"] {
-    padding: 2px;
-    border: 1px solid #ddd!important;
-    background-color: #fff!important;
-}
-#mceu_155 {
-    width: auto!important;
+.icon-row-full-width {
+    background-image: url("icon/row-full-width.png")!important;
+    width: 21px!important;
 }
 
+.col-2 {
+    background-image: url("icon/col-2.png")!important;
+}
+
+.col-3 {
+    background-image: url("icon/col-3.png")!important;
+    width: 22px!important;
+}
+
+.col-4 {
+    background-image: url("icon/col-4.png")!important;
+    width: 29px!important;
+}
+
+.col-2-3_1-3 {
+    background-image: url("icon/col-2-3_1-3.png")!important;
+    width: 22px!important;
+}
+
+.col-1-4_3-4 {
+    background-image: url("icon/col-1-4_3-4.png")!important;
+    width: 29px!important;
+}
+.col-1-4_1-2_1-4 {
+    background-image: url("icon/col-1-4_1-2_1-4.png")!important;
+    width: 29px!important;
+}
+
+.col-6 {
+    background-image: url("icon/col-6.png")!important;
+    width: 42px!important;
+}
+
+.col-5-6_1-6 {
+    background-image: url("icon/col-5-6_1-6.png")!important;
+    width: 42px!important;
+}
+.col-1-6_4-6_1-6 {
+    background-image: url("icon/col-1-6_4-6_1-6.png")!important;
+    width: 42px!important;
+}
+.col-1-6_1-6_1-6_1-2 {
+    background-image: url("icon/col-1-6_1-6_1-6_1-2.png")!important;
+    width: 42px!important;
+}
+
+.icons_button {
+    background-image: url("icon/font_awesome.png")!important;
+}
+
+.add_button {
+    background-image: url("https://cdn0.iconfinder.com/data/icons/feather/96/square-add-512.png")!important;
+}

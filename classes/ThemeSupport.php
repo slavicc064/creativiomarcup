@@ -9,7 +9,7 @@
 class ThemeSupport
 {
     public function __construct(){
-        add_action( 'after_setup_theme', array( $this, 'add_post_formats' ) );
+        add_action( 'after_setup_theme', array( $this, 'add_post_formats' ), 11 );
         add_action( 'wp_enqueue_scripts', array( $this, 'theme_name_scripts' ) );
     }
 

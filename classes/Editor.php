@@ -24,7 +24,7 @@ class Editor
             return;
         }
 
-        if( ! in_array( $typenow, array( 'post', 'page' ) ) )
+        if( ! in_array( $typenow, array( 'page' ) ) )
             return;
 
         if ( get_user_option('rich_editing') == 'true')

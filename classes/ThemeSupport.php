@@ -11,6 +11,16 @@ class ThemeSupport
     public function __construct(){
         add_action( 'after_setup_theme', array( $this, 'add_post_formats' ), 11 );
         add_action( 'wp_enqueue_scripts', array( $this, 'theme_name_scripts' ) );
+
+        remove_filter( 'the_content', 'wpautop' );
+        /*remove_filter( 'the_excerpt', 'wpautop' );
+        remove_filter('comment_text', 'wpautop');*/
+
+        remove_filter('the_content','wptexturize');
+        remove_filter('the_excerpt','wptexturize');
+        remove_filter('comment_text', 'wptexturize');
+
+        add_filter('the_content', array( $this, 'my_formatter' ), 99);
     }
 
     public function add_post_formats(){
@@ -24,7 +34,7 @@ class ThemeSupport
 
     public function theme_name_scripts() {
 
-        wp_enqueue_style( 'fontawesome', get_template_directory_uri() . '/fontawesome/web-fonts-with-css/css/fontawesome-all.css' );
+        wp_enqueue_style( 'my_fontawesome', get_template_directory_uri() . '/fontawesome/web-fonts-with-css/css/fontawesome-all.css' );
 
         wp_enqueue_style( 'bootstrap-css', get_template_directory_uri() . '/bootstrap/css/bootstrap.min.css' );
 
@@ -44,6 +54,23 @@ class ThemeSupport
 
         wp_enqueue_script( 'script-name', get_template_directory_uri() . '/js/script.js', array(), '1.0.0', true );
 
+    }
+
+    public function my_formatter($content) {
+        $new_content = '';
+        $pattern_full = '{(\[row\].*?\[/row\])}is';
+        $pattern_contents = '{\[row\](.*?)\[/row\]}is';
+        $pieces = preg_split($pattern_full, $content, -1, PREG_SPLIT_DELIM_CAPTURE);
+
+        foreach ($pieces as $piece) {
+            if (preg_match($pattern_contents, $piece, $matches)) {
+                $new_content .= $matches[1];
+            } else {
+                $new_content .= wptexturize(wpautop($piece));
+            }
+        }
+
+        return $new_content;
     }
 }
 new ThemeSupport;

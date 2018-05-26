@@ -5,11 +5,36 @@
     <?php wp_head(); ?>
 </head>
 <body>
-    <?php echo get_custom_logo();?>
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark" role="navigation">
+    <?php
+
+    $options = get_option( 'true_options' );
+
+    if( $options['my_select'] )
+    {
+        if( $options['my_select'] == "light" || $options['my_select'] == "white" )
+        {
+            $navbar_style = "navbar-light bg-" . $options['my_select'];
+        }
+        else
+        {
+            $navbar_style = "navbar-dark bg-" . $options['my_select'];
+        }
+    }
+
+    if( $options['my_radio'] )
+    {
+        if( $options['my_radio'] != "default" )
+        {
+            $navbar_position = $options['my_radio'];
+        }
+    }
+
+    ?>
+
+    <nav class="navbar navbar-expand-md <?= $navbar_position; ?> <?= $navbar_style; ?>" role="navigation">
         <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -29,3 +54,5 @@
             <?php echo do_shortcode('[wpdreams_ajaxsearchlite]'); ?>
         </div>
     </nav>
+
+    <?php echo get_custom_logo();?>

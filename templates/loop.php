@@ -4,9 +4,11 @@
 
         <h2 class='blog-post-title'><a href="<?php the_permalink(); ?>" class="text-dark"><?php the_title(); ?></a></h2>
 
-        <p class='blog-post-meta'><?php the_time(); ?></p>
 
-        <p class='blog-post-meta'><?php the_date(); ?></p>
+        <div class="plash">
+            <p class='blog-post-meta date'><?php the_date("M t"); ?></p>
+            <i class="fa fa-file-text" aria-hidden="true"></i>
+        </div>
 
         <p class='blog-post-meta'><?php the_tags(); ?></p>
 
